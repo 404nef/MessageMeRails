@@ -1,1 +1,67 @@
-<h1> You have reached root route</h1>
+<h2 class="ui  center aligned icon header">
+  <i class="plug icon"></i>
+  <div class="content">
+    Get Connected
+  </div>
+</h2>
+<%= render "layouts/errors", obj: @msg %>
+<div class="ui grid">
+  <div class="ten wide column">
+
+
+
+    <div class="ui fluid raised card chatbox">
+      <div class="content" id="messages">
+        <div class="ui small feed" id="messagecontainer">
+
+
+          <%= render Message.all.order(:created_at).last(20) %>
+
+
+        </div>
+      </div>
+
+      <div class="extra content">
+        <%= form_for(@msg , url: messages_path, html: {role: "form"}, remote: true) do |f| %>
+          <div class="field">
+            <div class="ui fluid icon input">
+
+
+              <%= f.text_field :body , placeholder: "Enter Message" %>
+              <%= f.button "Add Message" , class: "bordered inverted orange edit icon" %>
+
+            </div>
+          </div>
+
+         <% end %>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+
+
+  <div class="six wide column">
+    <div class="ui fluid raised card chatbox">
+      <div class="content">
+    <div class="ui inverted vertical pointing menu" >
+    <a class=" item">
+      Home
+    </a>
+    <a class="item">
+      Messages
+    </a>
+    <a class="item">
+      Friends
+    </a>
+  </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

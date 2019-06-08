@@ -26,23 +26,38 @@
           Categories
           <i class="dropdown icon"></i>
           <div class="menu">
-            <a class="item">Login</a>
-            <a class="item">SignUp</a>
-            <a class="item">Home</a>
+            <% if !is_loggedin? %>
+            <a class="item" href="<%= login_path %>">Login</a>
+            <a class="item" href="<%= signup_path %> ">SignUp</a>
+              <% else %>
+              <a class="item" href="<%= logout_path %> ">Logout</a>
+              <a class="item" href="<%= root_path %> ">Home</a>
+              <%end %>
+
           </div>
         </div>
       </div>
 
 
+      <% if !is_loggedin? %>
     <div class="item" >
-      <div class="ui primary button">Sign up</div>
+
+      <%= link_to "Sign Up", signup_path , class: " ui primary button" %>
+
     </div>
+        <% end %>
+
     </div>
+
 
 
   </div>
     <div class="ui container">
+      <%= render "layouts/notifications" %>
     <%= yield %>
+
+
+      <%= debug(params) %>
     </div>
   </body>
 </html>

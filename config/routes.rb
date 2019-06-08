@@ -3,8 +3,18 @@ Rails.application.routes.draw do
   #
   root "sessions#root"
 
-  resources :users
+  resources :users , except: [:new]
 
   get "login", to: "users#login"
+
+  post 'login' , to: "sessions#validate"
+
+  get "signup",to: "users#new"
+
+  get "logout", to: "sessions#logout"
+
+  resources :messages , only: [:create]
+
+  mount ActionCable.server, at: "/cable"
 
 end
